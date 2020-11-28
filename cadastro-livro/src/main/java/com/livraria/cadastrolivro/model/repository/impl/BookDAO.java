@@ -69,8 +69,36 @@ public class BookDAO implements IDAO<Book> {
     }
 
     @Override
-    public boolean update(Book book, String[] params) {
-        return true;
+    public boolean update(Book book, Long id) {
+
+        String query = "UPDATE "+ TABLE_NAME + " SET " + COLUM_ISBN + "=?, " +
+                COLUM_TITLE + "=?, " +
+                COLUM_AUTHOR + "=?, " +
+                COLUM_PUBLISHER + "=?, " +
+                COLUM_EDITION + "=?, " +
+                COLUM_PUBLICATION_DATE + "=?, " +
+                COLUM_BEST_SELLER + "=? WHERE id=?";
+        try{
+            PreparedStatement statement = connection.prepareStatement(query);
+
+            statement.setString(1, book.getIsbn());
+            statement.setString(2, book.getTitle());
+            statement.setLong(3, book.getAuthorId());
+            statement.setLong(4, book.getPublisherId());
+            statement.setInt(5, book.getEdition());
+            statement.setDate(6, Date.valueOf(book.getPublicationDate()));
+            statement.setBoolean(7, book.getBestSeller());
+            statement.setLong(8, id);
+
+            statement.execute();
+            statement.close();
+            return true;
+
+        } catch (SQLException throwables) {
+            System.out.println("Erro ao tentar atualizar o livro " + book.getTitle());
+            throwables.printStackTrace();
+        }
+        return false;
 
     }
 

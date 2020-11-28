@@ -20,12 +20,12 @@ public class Book {
     @Column(name = "dataLancamento")
     private LocalDate publicationDate;
     @Column(name = "categoria")
-    private Long categoryId;
+    private Integer categoryId;
     private Boolean bestSeller;
 
     public Book() {}
 
-    public Book(String isbn, String title, Long authorId, Long publisherId, Integer edition, LocalDate publicationDate, Long categoryId, Boolean bestSeller) {
+    public Book(String isbn, String title, Long authorId, Long publisherId, Integer edition, LocalDate publicationDate, Integer categoryId, Boolean bestSeller) {
         this.isbn = isbn;
         this.title = title;
         this.authorId = authorId;
@@ -88,11 +88,11 @@ public class Book {
         this.publicationDate = publicationDate;
     }
 
-    public Long getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Long categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
 

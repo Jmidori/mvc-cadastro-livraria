@@ -34,7 +34,7 @@ public class CategoryDAO implements IDAO<Category> {
     }
 
     @Override
-    public boolean update(Category category, String[] params) {
+    public boolean update(Category category, Long id) {
         return true;
 
     }

@@ -1,11 +1,13 @@
 package com.livraria.cadastrolivro.model.repository.impl;
 
 import com.livraria.cadastrolivro.model.entity.Author;
-import com.livraria.cadastrolivro.model.entity.Book;
 import com.livraria.cadastrolivro.model.repository.ConnectionFactory;
 import com.livraria.cadastrolivro.model.repository.IDAO;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

@@ -13,33 +13,6 @@ import java.util.List;
 public class AuthorDAOTest {
     private IDAO repo = new AuthorDAO();
 
-    public void setAuthor(){
-        Author author = new Author("Charlie Donlea", "norte americana");
-    }
-
-//    @Test
-//    public void shouldSaveANewBook() throws SQLException {
-//        setAuthor();
-//
-//        boolean sucess = repo.save(author);
-//        Assert.isTrue(sucess, "livro salvo com sucesso");
-//    }
-//
-//    @Test
-//    public void shouldUpdateABook() throws SQLException {
-//        setAuthor();
-//        author.setTitle("java avancado");
-//        boolean sucess = repo.update(author,1L);
-//        Assert.isTrue(sucess, "livro alterado com sucesso");
-//    }
-//
-//    @Test
-//    public void shouldDeleteARegister() throws SQLException {
-//        long id = 1L;
-//        boolean sucess = repo.delete(id);
-//        Assert.isTrue(sucess, "livro excluido com sucesso");
-//    }
-
     @Test
     public void shouldGetARegisterById() throws SQLException {
         long id = 3L;

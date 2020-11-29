@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Table(name = "editora")
 public class Publisher {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "nome")
@@ -15,6 +14,8 @@ public class Publisher {
     @Column(name = "nacionalidade")
     private String nationality;
 
+    public Publisher() {
+    }
     public Publisher(Long id, String name, String nationality) {
         this.id = id;
         this.name = name;

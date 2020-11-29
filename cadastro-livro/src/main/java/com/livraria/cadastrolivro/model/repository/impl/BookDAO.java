@@ -4,11 +4,11 @@ import com.livraria.cadastrolivro.model.entity.Book;
 import com.livraria.cadastrolivro.model.repository.ConnectionFactory;
 import com.livraria.cadastrolivro.model.repository.IDAO;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class BookDAO implements IDAO<Book> {
@@ -21,6 +21,7 @@ public class BookDAO implements IDAO<Book> {
     private static final String COLUM_PUBLISHER= "editora";
     private static final String COLUM_EDITION= "volume";
     private static final String COLUM_PUBLICATION_DATE= "dataLancamento";
+    private static final String COLUM_CATEGORY= "categoria";
     private static final String COLUM_BEST_SELLER= "bestSeller";
 
     public BookDAO() {
@@ -28,8 +29,36 @@ public class BookDAO implements IDAO<Book> {
     }
 
     @Override
-    public Optional<Book> findById(Long id) {
-        return Optional.empty();
+    public Book findById(Long id) {
+        String query = "SELECT * FROM "+ TABLE_NAME + " WHERE ID=?";
+        Book book = new Book();
+        try{
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, id);
+
+            ResultSet rs = statement.executeQuery();
+            rs.next();
+
+            book.setIsbn(rs.getString(COLUM_ISBN));
+            book.setTitle(rs.getString(COLUM_TITLE));
+            book.setAuthorId(rs.getLong(COLUM_AUTHOR));
+            book.setPublisherId(rs.getLong(COLUM_PUBLISHER));
+            book.setEdition(rs.getInt(COLUM_EDITION));
+            book.setPublicationDate(rs.getDate(COLUM_PUBLICATION_DATE).toLocalDate());
+            book.setCategoryId(rs.getInt(COLUM_CATEGORY));
+            book.setBestSeller(rs.getBoolean(COLUM_BEST_SELLER));
+
+            rs.close();
+            statement.close();
+            if(Objects.isNull(book)) {
+                System.out.format("Livro de id %d não foi encontrado.", id);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao tentar excluir o livro de id " + id);
+            e.printStackTrace();
+        }
+        return book;
     }
 
     @Override
@@ -45,7 +74,8 @@ public class BookDAO implements IDAO<Book> {
                                                             COLUM_PUBLISHER + ", " +
                                                             COLUM_EDITION + ", " +
                                                             COLUM_PUBLICATION_DATE + ", " +
-                                                            COLUM_BEST_SELLER + ") VALUES (?,?,?,?,?,?,?)";
+                                                            COLUM_CATEGORY + ", " +
+                                                            COLUM_BEST_SELLER + ") VALUES (?,?,?,?,?,?,?,?)";
         try{
             PreparedStatement statement = connection.prepareStatement(query);
 
@@ -55,7 +85,8 @@ public class BookDAO implements IDAO<Book> {
             statement.setLong(4, book.getPublisherId());
             statement.setInt(5, book.getEdition());
             statement.setDate(6, Date.valueOf(book.getPublicationDate()));
-            statement.setBoolean(7, book.getBestSeller());
+            statement.setInt(7, book.getCategoryId());
+            statement.setBoolean(8, book.getBestSeller());
 
             statement.execute();
             statement.close();
@@ -70,13 +101,13 @@ public class BookDAO implements IDAO<Book> {
 
     @Override
     public boolean update(Book book, Long id) {
-
         String query = "UPDATE "+ TABLE_NAME + " SET " + COLUM_ISBN + "=?, " +
                 COLUM_TITLE + "=?, " +
                 COLUM_AUTHOR + "=?, " +
                 COLUM_PUBLISHER + "=?, " +
                 COLUM_EDITION + "=?, " +
                 COLUM_PUBLICATION_DATE + "=?, " +
+                COLUM_CATEGORY + "=?, " +
                 COLUM_BEST_SELLER + "=? WHERE id=?";
         try{
             PreparedStatement statement = connection.prepareStatement(query);
@@ -87,8 +118,9 @@ public class BookDAO implements IDAO<Book> {
             statement.setLong(4, book.getPublisherId());
             statement.setInt(5, book.getEdition());
             statement.setDate(6, Date.valueOf(book.getPublicationDate()));
-            statement.setBoolean(7, book.getBestSeller());
-            statement.setLong(8, id);
+            statement.setInt(7, book.getCategoryId());
+            statement.setBoolean(8, book.getBestSeller());
+            statement.setLong(9, id);
 
             statement.execute();
             statement.close();
@@ -99,12 +131,23 @@ public class BookDAO implements IDAO<Book> {
             throwables.printStackTrace();
         }
         return false;
-
     }
 
     @Override
-    public boolean delete(Book book) {
-        return true;
+    public boolean delete(Long id) {
+        String query = "DELETE FROM "+ TABLE_NAME + " WHERE ID=?";
+        try{
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, id);
 
+            statement.execute();
+            statement.close();
+            return true;
+
+        } catch (SQLException throwables) {
+            System.out.println("Erro ao tentar excluir o livro de id " + id);
+            throwables.printStackTrace();
+        }
+        return false;
     }
 }

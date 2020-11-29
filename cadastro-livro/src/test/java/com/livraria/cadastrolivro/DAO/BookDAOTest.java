@@ -34,4 +34,19 @@ public class BookDAOTest {
         Assert.isTrue(sucess, "livro alterado com sucesso");
     }
 
+    @Test
+    public void shouldDeleteARegister() throws SQLException {
+        long id = 1L;
+        boolean sucess = bookRepo.delete(id);
+        Assert.isTrue(sucess, "livro excluido com sucesso");
+    }
+
+    @Test
+    public void shouldGetARegisterById() throws SQLException {
+        setBook();
+        long id = 2L;
+        Book b = (Book) bookRepo.findById(id);
+        Assert.notNull(b,"livro encontrado - "+b.getTitle());
+    }
+
 }

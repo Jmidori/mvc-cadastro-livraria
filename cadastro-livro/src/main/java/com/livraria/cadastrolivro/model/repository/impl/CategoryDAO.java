@@ -17,8 +17,8 @@ public class CategoryDAO implements IDAO<Category> {
     }
 
     @Override
-    public Optional<Category> findById(Long id) {
-        return Optional.empty();
+    public Category findById(Long id) {
+        return null;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class CategoryDAO implements IDAO<Category> {
     }
 
     @Override
-    public boolean delete(Category category) {
+    public boolean delete(Long id) {
         return true;
     }
 }

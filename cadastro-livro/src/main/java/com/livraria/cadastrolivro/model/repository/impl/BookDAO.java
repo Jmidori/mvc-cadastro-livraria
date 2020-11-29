@@ -7,6 +7,7 @@ import com.livraria.cadastrolivro.model.repository.IDAO;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -63,7 +64,33 @@ public class BookDAO implements IDAO<Book> {
 
     @Override
     public List<Book> getAll() {
-        return null;
+        String query = "SELECT * FROM "+ TABLE_NAME;
+        List<Book> books = new ArrayList<>();
+        try{
+            PreparedStatement statement = connection.prepareStatement(query);
+
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()) {
+                Book book = new Book();
+                book.setIsbn(rs.getString(COLUM_ISBN));
+                book.setTitle(rs.getString(COLUM_TITLE));
+                book.setAuthorId(rs.getLong(COLUM_AUTHOR));
+                book.setPublisherId(rs.getLong(COLUM_PUBLISHER));
+                book.setEdition(rs.getInt(COLUM_EDITION));
+                book.setPublicationDate(rs.getDate(COLUM_PUBLICATION_DATE).toLocalDate());
+                book.setCategoryId(rs.getInt(COLUM_CATEGORY));
+                book.setBestSeller(rs.getBoolean(COLUM_BEST_SELLER));
+
+                books.add(book);
+            }
+            rs.close();
+            statement.close();
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao tentar buscar os registros de livros na base de dados");
+            e.printStackTrace();
+        }
+        return books;
     }
 
     @Override

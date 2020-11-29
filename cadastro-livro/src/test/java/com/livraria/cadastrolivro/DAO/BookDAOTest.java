@@ -8,6 +8,7 @@ import org.springframework.util.Assert;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 public class BookDAOTest {
     private Book book;
@@ -49,4 +50,13 @@ public class BookDAOTest {
         Assert.notNull(b,"livro encontrado - "+b.getTitle());
     }
 
+    public void registerNotFondTest() throws SQLException {
+        //testar qndo o livro buscado nao existe na base
+    }
+
+    @Test
+    public void shouldGetAllRegisters() throws SQLException {
+        List<Book> books = bookRepo.getAll();
+        Assert.notNull(books, "count = " + books.size());
+    }
 }

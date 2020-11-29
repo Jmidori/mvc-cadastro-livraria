@@ -7,18 +7,14 @@ import javax.persistence.*;
 public class Author {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @Column(name = "nome")
     private String name;
-
     @Column(name = "nacionalidade")
     private String nationality;
 
     public Author() {}
-    public Author(Long id, String name, String nationality) {
-        this.id = id;
+    public Author(String name, String nationality) {
         this.name = name;
         this.nationality = nationality;
     }

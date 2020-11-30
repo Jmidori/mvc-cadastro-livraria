@@ -1,6 +1,8 @@
 # mvc-cadastro-livraria
-Projeto desenvolvido para a Disciplina de Engenharia de Software 3
+Projeto desenvolvido para a Disciplina de Engenharia de Software 3.
+
 A aplicação realiza o cadastramento de Livros com as operações de CRUD implementdas.
+
 Esse projeto nao contempla o cadastramento das entidades que se relacionam ao cadastro de livro. Esse vinculo é feito atraves da inclusão do id dessas entidades no registro do livro. 
 
 ### Componentes do projeto

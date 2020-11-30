@@ -1,32 +1,22 @@
-package com.livraria.cadastrolivro.model.entity;
+package com.livraria.cadastrolivro.controller;
 
-import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "livro")
-public class Book {
-    @Id
-    private Long id;
+public class BooKDTO implements Serializable {
+
     private String isbn;
-    @Column(name = "titulo")
     private String title;
-    @Column(name = "autor")
     private Long authorId;
-    @Column(name = "editora")
     private Long publisherId;
-    @Column(name = "volume")
     private Integer edition;
-    @Column(name = "dataLancamento")
     private LocalDate publicationDate;
-    @Column(name = "categoria")
     private Integer categoryId;
     private Boolean bestSeller;
 
-    public Book() {}
-
-    public Book(Long id, String isbn, String title, Long authorId, Long publisherId, Integer edition, LocalDate publicationDate, Integer categoryId, Boolean bestSeller) {
-        this.id = id;
+    public BooKDTO() {
+    }
+    public BooKDTO(String isbn, String title, Long authorId, Long publisherId, Integer edition, LocalDate publicationDate, Integer categoryId, Boolean bestSeller) {
         this.isbn = isbn;
         this.title = title;
         this.authorId = authorId;
@@ -35,13 +25,6 @@ public class Book {
         this.publicationDate = publicationDate;
         this.categoryId = categoryId;
         this.bestSeller = bestSeller;
-    }
-
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getIsbn() {

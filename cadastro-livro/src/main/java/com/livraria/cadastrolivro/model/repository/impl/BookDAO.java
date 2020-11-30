@@ -16,6 +16,7 @@ public class BookDAO implements IDAO<Book> {
 
     private Connection connection;
     private static final String TABLE_NAME = "livro";
+    private static final String COLUM_ID= "id";
     private static final String COLUM_ISBN= "isbn";
     private static final String COLUM_TITLE= "titulo";
     private static final String COLUM_AUTHOR= "autor";
@@ -40,6 +41,7 @@ public class BookDAO implements IDAO<Book> {
             ResultSet rs = statement.executeQuery();
             rs.next();
 
+            book.setId(rs.getLong(COLUM_ID));
             book.setIsbn(rs.getString(COLUM_ISBN));
             book.setTitle(rs.getString(COLUM_TITLE));
             book.setAuthorId(rs.getLong(COLUM_AUTHOR));
@@ -72,6 +74,7 @@ public class BookDAO implements IDAO<Book> {
             ResultSet rs = statement.executeQuery();
             while(rs.next()) {
                 Book book = new Book();
+                book.setId(rs.getLong(COLUM_ID));
                 book.setIsbn(rs.getString(COLUM_ISBN));
                 book.setTitle(rs.getString(COLUM_TITLE));
                 book.setAuthorId(rs.getLong(COLUM_AUTHOR));

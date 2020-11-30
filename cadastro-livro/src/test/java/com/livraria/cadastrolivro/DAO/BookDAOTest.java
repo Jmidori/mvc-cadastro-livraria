@@ -15,7 +15,8 @@ public class BookDAOTest {
     private IDAO bookRepo = new BookDAO();
 
     public void setBook(){
-        this.book = new Book("9788533302273", "java basico", 1L, 2L, 3, LocalDate.now(), 1, true);
+
+        this.book = new Book(null,"9788522005239", "o pequeno principe", 2L, 3L, 5, LocalDate.now(), 2, true);
 //        Book book2 = new Book("9788533302273", "java avancado", 1L, 2L, 1, LocalDate.now(), 1,false);
     }
 

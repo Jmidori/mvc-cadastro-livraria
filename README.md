@@ -17,7 +17,7 @@ Banco de Dados MySQL
 ### Criação do Banco de Dados e Tabelas
 1. Pré requisito: possuir o servidor do MySQL instalado
 
-2. Rodar os scripts de criação de banco de dados e tabelas conforme orientações contidas em: mvc-cadastro-livraria/documentacao/db-script
+2. importar o banco de dados e suas tabelas em: mvc-cadastro-livraria/dumps/export.sql (tutorial: https://www.hostnet.com.br/info/importacao-do-banco-via-mysql-workbench/)
 
 ### Inicialização da aplicação Backend
 pela IDE: Abrir o projeto mvc-cadastro-livraria/cadastro-livro na IDE e executar a classe ApplicationMain

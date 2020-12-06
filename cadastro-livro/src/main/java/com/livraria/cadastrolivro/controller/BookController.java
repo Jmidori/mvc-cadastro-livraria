@@ -16,6 +16,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/livros")
+@CrossOrigin(origins = "*")
 public class BookController {
     private BookDAO repository;
     private Log log;

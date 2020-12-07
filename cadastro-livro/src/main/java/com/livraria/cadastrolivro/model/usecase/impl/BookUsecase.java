@@ -13,13 +13,13 @@ public class BookUsecase implements IBookUsecase{
 
     @Override
     public boolean getValidatedEntity(BooKDTO bookDTO) {
-        if(Objects.isNull(bookDTO.getIsbn())){
+        if(Objects.isNull(bookDTO.getIsbn()) || bookDTO.getIsbn()==""){
             return false;
         }
-        if(Objects.isNull(bookDTO.getTitle())){
+        if(Objects.isNull(bookDTO.getTitle()) || bookDTO.getTitle()==""){
             return false;
         }
-        if(Objects.isNull(bookDTO.getAuthorId())){
+        if(Objects.isNull(bookDTO.getAuthorId()) || bookDTO.getAuthorId()==0){
             return false;
         }
         if(Objects.isNull(bookDTO.getPublisherId())){

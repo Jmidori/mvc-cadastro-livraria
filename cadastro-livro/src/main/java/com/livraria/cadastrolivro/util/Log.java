@@ -14,10 +14,11 @@ public class Log {
     }
 
     public void generateErrorLog(LocalDateTime dateTime, String identifier, String occurrence){
-        log.error(dateTime + " - Erro na operacao: " + identifier + ". Erro: " + occurrence);
+//        log.error(dateTime + " - Erro na operacao: " + identifier + ". Erro: " + occurrence);
     }
 
     public void generateRegisterLog(LocalDateTime dateTime, String s) {
-        log.info(dateTime + s);
+//        log.info(dateTime + s);
+        System.out.println("---- generateRegisterLog: " +dateTime +" "+ s);
     }
 }

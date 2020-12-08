@@ -1,6 +1,6 @@
 package com.livraria.cadastrolivro.DAO;
 
-import com.livraria.cadastrolivro.model.repository.ConnectionFactory;
+import com.livraria.cadastrolivro.model.dao.ConnectionFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.Assert;
 

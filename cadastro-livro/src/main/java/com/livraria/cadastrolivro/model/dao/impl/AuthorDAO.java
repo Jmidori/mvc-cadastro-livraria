@@ -1,8 +1,8 @@
-package com.livraria.cadastrolivro.model.repository.impl;
+package com.livraria.cadastrolivro.model.dao.impl;
 
-import com.livraria.cadastrolivro.model.entity.Author;
-import com.livraria.cadastrolivro.model.repository.ConnectionFactory;
-import com.livraria.cadastrolivro.model.repository.IDAO;
+import com.livraria.cadastrolivro.model.dao.entity.Author;
+import com.livraria.cadastrolivro.model.dao.ConnectionFactory;
+import com.livraria.cadastrolivro.model.dao.IDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

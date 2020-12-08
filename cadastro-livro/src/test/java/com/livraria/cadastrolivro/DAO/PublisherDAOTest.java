@@ -1,11 +1,8 @@
 package com.livraria.cadastrolivro.DAO;
 
-import com.livraria.cadastrolivro.model.entity.Author;
-import com.livraria.cadastrolivro.model.entity.Book;
-import com.livraria.cadastrolivro.model.entity.Publisher;
-import com.livraria.cadastrolivro.model.repository.IDAO;
-import com.livraria.cadastrolivro.model.repository.impl.AuthorDAO;
-import com.livraria.cadastrolivro.model.repository.impl.PublisherDAO;
+import com.livraria.cadastrolivro.model.dao.entity.Publisher;
+import com.livraria.cadastrolivro.model.dao.IDAO;
+import com.livraria.cadastrolivro.model.dao.impl.PublisherDAO;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.Assert;
 

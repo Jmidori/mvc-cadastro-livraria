@@ -1,4 +1,4 @@
-package com.livraria.cadastrolivro.model.entity;
+package com.livraria.cadastrolivro.model.dao.entity;
 
 import javax.persistence.*;
 

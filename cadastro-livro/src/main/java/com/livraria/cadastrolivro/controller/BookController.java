@@ -1,7 +1,7 @@
 package com.livraria.cadastrolivro.controller;
 
-import com.livraria.cadastrolivro.model.entity.Book;
-import com.livraria.cadastrolivro.model.repository.impl.BookDAO;
+import com.livraria.cadastrolivro.model.dao.entity.Book;
+import com.livraria.cadastrolivro.model.dao.impl.BookDAO;
 import com.livraria.cadastrolivro.model.usecase.IBookUsecase;
 import com.livraria.cadastrolivro.model.usecase.impl.BookUsecase;
 import com.livraria.cadastrolivro.util.Log;
@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.lang.annotation.Retention;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;

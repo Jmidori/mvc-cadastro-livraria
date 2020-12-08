@@ -1,13 +1,11 @@
 package com.livraria.cadastrolivro.model.usecase.impl;
 
 import com.livraria.cadastrolivro.controller.BooKDTO;
-import com.livraria.cadastrolivro.model.entity.Book;
-import com.livraria.cadastrolivro.model.repository.impl.BookDAO;
+import com.livraria.cadastrolivro.model.dao.entity.Book;
+import com.livraria.cadastrolivro.model.dao.impl.BookDAO;
 import com.livraria.cadastrolivro.model.usecase.IBookUsecase;
 
-import javax.sound.midi.Soundbank;
 import java.util.Objects;
-import java.util.Optional;
 
 public class BookUsecase implements IBookUsecase{
 

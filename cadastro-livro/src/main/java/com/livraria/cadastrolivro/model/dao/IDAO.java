@@ -1,7 +1,6 @@
-package com.livraria.cadastrolivro.model.repository;
+package com.livraria.cadastrolivro.model.dao;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface IDAO<T> {
     T findById(Long id);

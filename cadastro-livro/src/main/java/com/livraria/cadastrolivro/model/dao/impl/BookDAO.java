@@ -1,16 +1,13 @@
-package com.livraria.cadastrolivro.model.repository.impl;
+package com.livraria.cadastrolivro.model.dao.impl;
 
-import com.livraria.cadastrolivro.model.entity.Book;
-import com.livraria.cadastrolivro.model.repository.ConnectionFactory;
-import com.livraria.cadastrolivro.model.repository.IDAO;
+import com.livraria.cadastrolivro.model.dao.entity.Book;
+import com.livraria.cadastrolivro.model.dao.ConnectionFactory;
+import com.livraria.cadastrolivro.model.dao.IDAO;
 
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 public class BookDAO implements IDAO<Book> {
 

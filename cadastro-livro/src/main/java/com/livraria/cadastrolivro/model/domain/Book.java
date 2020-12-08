@@ -1,30 +1,19 @@
-package com.livraria.cadastrolivro.model.entity;
+package com.livraria.cadastrolivro.model.domain;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "livro")
 public class Book {
-    @Id
     private Long id;
     private String isbn;
-    @Column(name = "titulo")
     private String title;
-    @Column(name = "autor")
     private Long authorId;
-    @Column(name = "editora")
     private Long publisherId;
-    @Column(name = "volume")
     private Integer edition;
-    @Column(name = "dataLancamento")
     private LocalDate publicationDate;
-    @Column(name = "categoria")
     private Integer categoryId;
     private Boolean bestSeller;
 
     public Book() {}
-
     public Book(Long id, String isbn, String title, Long authorId, Long publisherId, Integer edition, LocalDate publicationDate, Integer categoryId, Boolean bestSeller) {
         this.id = id;
         this.isbn = isbn;

@@ -8,6 +8,7 @@ import com.livraria.cadastrolivro.util.Log;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.lang.annotation.Retention;
 import java.time.LocalDateTime;
@@ -16,7 +17,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/livros")
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class BookController {
     private BookDAO repository;
     private Log log;
@@ -27,6 +28,11 @@ public class BookController {
         this.repository = new BookDAO();
         this.useCase = new BookUsecase();
         this.log = new Log();
+    }
+
+    @RequestMapping("/cadastro")
+    public ModelAndView getMainView() {
+        return new ModelAndView("main");
     }
 
     @GetMapping()

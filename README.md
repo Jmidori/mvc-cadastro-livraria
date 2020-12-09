@@ -19,9 +19,16 @@ Banco de Dados MySQL
 
 2. importar o banco de dados e suas tabelas em: mvc-cadastro-livraria/dumps/export.sql (tutorial: https://www.hostnet.com.br/info/importacao-do-banco-via-mysql-workbench/)
 
-### Inicialização da aplicação Backend
-pela IDE: Abrir o projeto mvc-cadastro-livraria/cadastro-livro na IDE e executar a classe ApplicationMain
+### Inicialização da aplicação
+- pela IDE: 
+Abrir o projeto mvc-cadastro-livraria/cadastro-livro na IDE e executar a classe ApplicationMain
 
-pelo Terminal: acessar o diretorio mvc-cadastro-livraria/cadastro-livro/target executar o comando: java -jar target\cadastro-livro-0.0.1-SNAPSHOT.jar (a aplicação subirá na porta 8080)
+- pelo Terminal: 
+Acessar o diretorio mvc-cadastro-livraria/cadastro-livro/target executar o comando: java -jar cadastro-livro-0.0.1-SNAPSHOT.jar (a aplicação subirá na porta 8080)
 
-### Inicialização da aplicação Frontend
+
+## Navegação
+
+Acessar a página principal de cadastro de livro: http://localhost:8080/cadastro/livro
+
+Nesta página, é possivel vizualizar todos os livros cadastrados, criar novos registros atraves do botão "NOVO", alterar um registro ou excluí-lo clicando nos links alinhados ao registro em que deseja executar a ação. 

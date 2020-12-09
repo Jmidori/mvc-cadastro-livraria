@@ -1,20 +1,23 @@
-package com.livraria.cadastrolivro.model.entity;
+package com.livraria.cadastrolivro.model.dao.entity;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "autor")
-public class Author {
-
+@Table(name = "editora")
+public class Publisher {
     @Id
     private Long id;
+
     @Column(name = "nome")
     private String name;
+
     @Column(name = "nacionalidade")
     private String nationality;
 
-    public Author() {}
-    public Author(String name, String nationality) {
+    public Publisher() {
+    }
+    public Publisher(Long id, String name, String nationality) {
+        this.id = id;
         this.name = name;
         this.nationality = nationality;
     }

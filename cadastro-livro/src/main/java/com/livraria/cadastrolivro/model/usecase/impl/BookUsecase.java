@@ -1,18 +1,17 @@
 package com.livraria.cadastrolivro.model.usecase.impl;
 
-import com.livraria.cadastrolivro.controller.BooKDTO;
-import com.livraria.cadastrolivro.model.entity.Book;
-import com.livraria.cadastrolivro.model.repository.impl.BookDAO;
-import com.livraria.cadastrolivro.model.usecase.IBookUsecase;
+import com.livraria.cadastrolivro.controller.request.BookDTO;
+import com.livraria.cadastrolivro.controller.request.DTO;
+import com.livraria.cadastrolivro.model.dao.entity.Book;
+import com.livraria.cadastrolivro.model.dao.impl.BookDAO;
+import com.livraria.cadastrolivro.model.usecase.IRegisterStrategy;
 
-import javax.sound.midi.Soundbank;
 import java.util.Objects;
-import java.util.Optional;
 
-public class BookUsecase implements IBookUsecase{
+public class BookUsecase implements IRegisterStrategy {
 
     @Override
-    public boolean getValidatedEntity(BooKDTO bookDTO) {
+    public boolean getValidatedEntity(BookDTO bookDTO) {
         if(Objects.isNull(bookDTO.getIsbn()) || bookDTO.getIsbn()==""){
             return false;
         }
@@ -30,7 +29,7 @@ public class BookUsecase implements IBookUsecase{
     }
 
     @Override
-    public Book entityBuilder(BooKDTO dto) {
+    public Book entityBuilder(BookDTO dto) {
         Book book = new Book();
         book.setIsbn(dto.getIsbn());
         book.setTitle(dto.getTitle());
@@ -45,16 +44,26 @@ public class BookUsecase implements IBookUsecase{
     }
 
     @Override
-    public boolean allowUpdate(long id, BooKDTO dto) {
+    public boolean allowUpdate(long id, BookDTO dto) {
         BookDAO repo = new BookDAO();
         Book book = repo.findById(id);
         if(Objects.isNull(book)){
             return false;
         }
-        System.out.println("db: "+book.getIsbn() + " - dto: "+dto.getIsbn());
         if(!book.getIsbn().equals(dto.getIsbn())){
             return false;
         }
+        return true;
+    }
+
+    @Override
+    public boolean validConditionForUpdate(Long id, DTO bookDTO) {
+        if(!this.getValidatedEntity((BookDTO)bookDTO))
+            return false;
+
+        if(!this.allowUpdate(id, (BookDTO)bookDTO))
+            return false;
+
         return true;
     }
 }

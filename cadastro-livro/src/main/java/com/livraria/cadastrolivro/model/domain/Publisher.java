@@ -1,19 +1,9 @@
-package com.livraria.cadastrolivro.model.entity;
+package com.livraria.cadastrolivro.model.domain;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "editora")
-public class Publisher {
-    @Id
+public class Publisher implements DomainEntity{
     private Long id;
-
-    @Column(name = "nome")
     private String name;
-
-    @Column(name = "nacionalidade")
     private String nationality;
-
     public Publisher() {
     }
     public Publisher(Long id, String name, String nationality) {

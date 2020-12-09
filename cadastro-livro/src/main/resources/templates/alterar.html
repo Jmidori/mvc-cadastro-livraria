@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<title>Livraria XPTO</title>
@@ -10,6 +10,7 @@
 	<form>
 		<div class="container">
 			<h1>Alterar</h1>
+			<input type="hidden" id="bookId" name="bookId" th:value="${bookId}">
 			<div class="form-group">
 				<label for="isbn">ISBN</label>
 				<input type="text" class="form-control" id="isbn" readonly>
@@ -57,18 +58,9 @@
 		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 		crossorigin="anonymous"></script>
 	<script>
-		function getQuerystring(key) {
-			key = key.replace(/[[]/, "[").replace(/[]]/, "]");
-			var regex = new RegExp("[?&]" + key + "=([^&#]*)");
-			var qs = regex.exec(window.location.href);
-			if (qs == null)
-				return null;
-			else
-				return qs[1];
-		}
 
 		function getBook(id) {
-			$.get("http://localhost:8080/livros/" + id, function (data) {
+			$.get("http://localhost:8080/api/livros/" + id, function (data) {
 				$("#isbn").val(data.isbn);
 				$("#title").val(data.title);
 				$("#authorId").val(data.authorId);
@@ -81,12 +73,12 @@
 		}
 
 		$(document).ready(() => {
-			var id = getQuerystring("id");
+			var id = $("#bookId").val();
 			getBook(id);
 
 			//button voltar
 			$("#voltar").click(() => {
-				window.location.href = "main.html";
+				window.location.href = "http://localhost:8080/cadastro/livro";
 			});
 			//button enviar
 			$("#enviar").click(() => {
@@ -104,14 +96,14 @@
 
 				$.ajax({
 					type: "PATCH",
-					url: "http://localhost:8080/livros/" + id,
+					url: "http://localhost:8080/api/livros/" + id,
 					data: JSON.stringify(bookRequest),
 					//processData: false,
 					contentType: 'application/merge-patch+json',
 					statusCode: {
 						200: function (result) {
 							alert("Livro alterado com sucesso!");
-							window.location.href = "main.html";
+							window.location.href = "http://localhost:8080/cadastro/livro";
 						}
 					},
 					error: (data) => {

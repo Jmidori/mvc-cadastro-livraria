@@ -44,7 +44,7 @@
 			
 			<div style="margin: 16px 0px 0px 0px">
 				<button type="button" id="enviar" class="btn btn-primary">Enviar</button>
-				<button type="button" id="cancelar" class="btn btn-warning">Cancelar</button>
+				<button type="button" id="voltar" class="btn btn-warning">Voltar</button>
 			</div>
 			<div class="alert alert-success d-none" role="alert" style="margin: 16px 0px 0px 0px;"><b>Solicitação enviada
 					com sucesso!</b></div>
@@ -59,12 +59,11 @@
 		crossorigin="anonymous"></script>
 	<script>
 		$(document).ready(() => {
-			console.log("document-ready");
-			console.log($("#publicationDate").val());
 			//button cancelar
-			$("#cancelar").click(() => {
-				location.reload();
+			$("#voltar").click(() => {
+				window.location.href = "http://localhost:8080/cadastro/livro";
 			});
+
 			//button enviar
 			$("#enviar").click(() => {
 				$('#enviar').prop('disabled', true);
@@ -82,7 +81,7 @@
 				console.log(["bookRequest", JSON.stringify(bookRequest)]);
 				$.ajax({
 					type: "POST",
-					url: "http://localhost:8080/livros",
+					url: "http://localhost:8080/api/livros",
 					data: JSON.stringify(bookRequest),
 					contentType: "application/json",
 					dataType: "json",
@@ -92,7 +91,8 @@
 							(function blink() {
 								$('.alert-success').fadeOut(700)
 									.fadeIn(700, blink);
-							})();
+								})();
+								location.reload();
 							setTimeout(() => {
 								$("#cancelar").click();
 							}, 3000);

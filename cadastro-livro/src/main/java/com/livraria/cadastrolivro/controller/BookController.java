@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
-@RequestMapping("/livros")
+@RequestMapping("/api/livros")
 public class BookController {
     private BookDAO repository;
     private Log log;

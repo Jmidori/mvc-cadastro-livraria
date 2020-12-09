@@ -49,7 +49,7 @@
 		<script>
 			var bookHashMap = {};
 			function loadbooks() {
-				$.get("http://localhost:8080/livros", function (data) {
+				$.get("http://localhost:8080/api/livros", function (data) {
 					data.forEach(element => {
 						var markup = "<tr><td>" + element.id
 							+ "</td><td>" + element.isbn
@@ -57,7 +57,7 @@
 							+ "</td><td>" + element.authorId
 							+ "</td><td>" + element.publisherId
 							+ "</td><td>" + element.edition
-							+ "</td><td><a href=alterar.html?id=" + element.id + ">Alterar</a>"
+							+ "</td><td><a href=http://localhost:8080/cadastro/alterar-livro?id=" + element.id + ">Alterar</a>"
 							+ "</td><td><a href=javascript:deleteBook(" + element.id + ")>Excluir</a></td></tr>";
 						$("#books").append(markup);
 					});
@@ -67,7 +67,7 @@
 			function deleteBook(id) {
 				if(confirm("Tem certeza que deseja excluir esse registro permanentemente?")){
 					$.ajax({
-						url: "http://localhost:8080/livros/" + id,
+						url: "http://localhost:8080/api/livros/" + id,
 						type: "DELETE",
 						success: function (result) {
 							alert("Livro excluido com sucesso!");
@@ -84,6 +84,11 @@
 
 			$(document).ready(() => {
 				loadbooks();
+
+				//button novo
+				$("#btnNew").click(() => {
+				window.location.href = "http://localhost:8080/cadastro/novo-livro";
+			});
 			})
 		</script>
 	</body>

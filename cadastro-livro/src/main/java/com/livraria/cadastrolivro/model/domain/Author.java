@@ -1,6 +1,6 @@
 package com.livraria.cadastrolivro.model.domain;
 
-public class Author {
+public class Author implements DomainEntity{
 
     private Long id;
     private String name;

@@ -1,7 +1,7 @@
 package com.livraria.cadastrolivro.model.domain;
 
 
-public class Category {
+public class Category implements DomainEntity{
     private Long id;
     private String description;
 

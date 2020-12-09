@@ -1,9 +1,9 @@
-package com.livraria.cadastrolivro.controller;
+package com.livraria.cadastrolivro.controller.request;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class BooKDTO implements Serializable {
+public class BookDTO implements Serializable, DTO {
 
     private String isbn;
     private String title;
@@ -14,9 +14,9 @@ public class BooKDTO implements Serializable {
     private Integer categoryId;
     private Boolean bestSeller;
 
-    public BooKDTO() {
+    public BookDTO() {
     }
-    public BooKDTO(String isbn, String title, Long authorId, Long publisherId, Integer edition, LocalDate publicationDate, Integer categoryId, Boolean bestSeller) {
+    public BookDTO(String isbn, String title, Long authorId, Long publisherId, Integer edition, LocalDate publicationDate, Integer categoryId, Boolean bestSeller) {
         this.isbn = isbn;
         this.title = title;
         this.authorId = authorId;

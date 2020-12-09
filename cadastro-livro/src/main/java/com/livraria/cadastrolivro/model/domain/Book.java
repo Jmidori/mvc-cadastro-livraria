@@ -2,7 +2,7 @@ package com.livraria.cadastrolivro.model.domain;
 
 import java.time.LocalDate;
 
-public class Book {
+public class Book implements DomainEntity{
     private Long id;
     private String isbn;
     private String title;

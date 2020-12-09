@@ -1,14 +1,14 @@
 package com.livraria.cadastrolivro.controller;
 
+import com.livraria.cadastrolivro.controller.request.BookDTO;
 import com.livraria.cadastrolivro.model.dao.entity.Book;
 import com.livraria.cadastrolivro.model.dao.impl.BookDAO;
-import com.livraria.cadastrolivro.model.usecase.IBookUsecase;
+import com.livraria.cadastrolivro.model.usecase.IRegisterStrategy;
 import com.livraria.cadastrolivro.model.usecase.impl.BookUsecase;
 import com.livraria.cadastrolivro.util.Log;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,17 +16,16 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/livros")
-//@CrossOrigin(origins = "*")
 public class BookController {
     private BookDAO repository;
     private Log log;
-    private IBookUsecase useCase;
+    private IRegisterStrategy strategy;
 
 
     public BookController() {
         this.repository = new BookDAO();
-        this.useCase = new BookUsecase();
         this.log = new Log();
+        this.strategy = new BookUsecase();
     }
 
     @GetMapping()
@@ -56,12 +55,12 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createBook(@RequestBody BooKDTO book){
+    public ResponseEntity<String> createBook(@RequestBody BookDTO book){
         try{
-            if(!useCase.getValidatedEntity(book)){
+            if(!strategy.getValidatedEntity(book)){
                 return new ResponseEntity("Livro nao cadastrado! Verifique os campos obrigatorios" ,HttpStatus.BAD_REQUEST);
             }
-            repository.save(useCase.entityBuilder(book));
+            repository.save(strategy.entityBuilder(book));
 
         }catch (RuntimeException e){
             new Log().generateErrorLog(LocalDateTime.now(), "registrar o livro: " + book.toString() +" no BD", e.getMessage());
@@ -71,15 +70,13 @@ public class BookController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<String> updateBook(@RequestBody BooKDTO book, @PathVariable(value = "id") long id){
+    public ResponseEntity<String> updateBook(@RequestBody BookDTO book, @PathVariable(value = "id") long id){
         try{
-            if(!useCase.getValidatedEntity(book)){
-                return new ResponseEntity("Livro nao alterado! Verifique os campos obrigatorios" ,HttpStatus.BAD_REQUEST);
+            if(!strategy.validConditionForUpdate(id, book)){
+                return new ResponseEntity("Livro nao alterado! - O ISBN nao pode ser alterado e/ou campos obrigatorios devem estar preenchidos." ,HttpStatus.BAD_REQUEST);
             }
-            if(!useCase.allowUpdate(id, book)){
-                return new ResponseEntity("O ISBN do livro nao pode ser alterado" ,HttpStatus.BAD_REQUEST);
-            }
-            repository.update(useCase.entityBuilder(book),id);
+
+            repository.update(strategy.entityBuilder(book),id);
             log.generateRegisterLog(LocalDateTime.now(), " - ATUALIZADO livro de id: "+ id);
 
         }catch (RuntimeException e){

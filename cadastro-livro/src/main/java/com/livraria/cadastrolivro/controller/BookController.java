@@ -29,11 +29,6 @@ public class BookController {
         this.log = new Log();
     }
 
-    @RequestMapping("/cadastro")
-    public ModelAndView getMainView() {
-        return new ModelAndView("main");
-    }
-
     @GetMapping()
     public ResponseEntity<List<Book>> getBooks(){
         try{

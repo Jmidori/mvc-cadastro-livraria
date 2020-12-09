@@ -25,7 +25,8 @@ Executar o script contido no arquivo **db--livraria-script.sql** contido no dire
 Abrir o projeto mvc-cadastro-livraria/cadastro-livro na IDE e executar a classe ApplicationMain
 
 **[Opção 2] via Terminal:**  
-Acessar o diretorio **mvc-cadastro-livraria/cadastro-livro/target** executar o comando: 
+baixar o jar atraves do link: //
+executar o comando:
 ```sh
 java -jar cadastro-livro-0.0.1-SNAPSHOT.jar
 ```

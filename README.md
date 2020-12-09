@@ -17,15 +17,18 @@ Banco de Dados MySQL
 ### Criação do Banco de Dados e Tabelas
 1. Pré requisito: possuir o servidor do MySQL instalado
 
-2. importar o banco de dados e suas tabelas em: mvc-cadastro-livraria/dumps/export.sql (tutorial: https://www.hostnet.com.br/info/importacao-do-banco-via-mysql-workbench/)
+2. importar o banco de dados e suas tabelas
+Executar o script contido no arquivo **db--livraria-script.sql** contido no diretorio: **mvc-cadastro-livraria\db-livraria**
 
 ### Inicialização da aplicação
-- pela IDE: 
+**[Opção 1] via IDE:** 
 Abrir o projeto mvc-cadastro-livraria/cadastro-livro na IDE e executar a classe ApplicationMain
 
-- pelo Terminal: 
-Acessar o diretorio mvc-cadastro-livraria/cadastro-livro/target executar o comando: java -jar cadastro-livro-0.0.1-SNAPSHOT.jar (a aplicação subirá na porta 8080)
-
+**[Opção 2] via Terminal:**  
+Acessar o diretorio **mvc-cadastro-livraria/cadastro-livro/target** executar o comando: 
+```sh
+java -jar cadastro-livro-0.0.1-SNAPSHOT.jar
+```
 
 ## Navegação
 
